@@ -27,7 +27,7 @@ public class NettyClient {
                 protected void initChannel(Channel channel) throws Exception {
                     ChannelPipeline pipeline = channel.pipeline();
                     pipeline.addLast("decoder", new StringDecoder());//解码
-                    pipeline.addLast("encoder", new StringEncoder());//编码
+                    pipeline.addLast("encoder", new StringEncoder());//编
                     pipeline.addLast(new NettyClientHandel());
                 }
             };
