@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87a5ce16-852b-44bb-b202-d9e4c7cf4f9b" name="Default Changelist" comment="" />
+    <list default="true" id="87a5ce16-852b-44bb-b202-d9e4c7cf4f9b" name="Default Changelist" comment="netty实现的简单聊天功能">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/learn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/learn/io/nio/NIOClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/learn/io/nio/NIOClient.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +20,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -29,10 +38,11 @@
     </option>
   </component>
   <component name="ProjectId" id="1Z3tagwtqpUDygfKD4TRcAVoZ1n" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="D:/opensource/svn/bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -50,7 +60,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.NIOClient">
+  <component name="RunManager" selected="Application.NettyClient">
     <configuration name="NIOClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.learn.io.nio.NIOClient" />
       <module name="learn" />
@@ -77,6 +87,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NettyClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.learn.io.netty.NettyClient" />
+      <module name="learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.learn.io.netty.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NettyServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.learn.io.netty.NettyServer" />
+      <module name="learn" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.learn.io.netty.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LearnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="learn" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.learn.LearnApplication" />
@@ -84,8 +120,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.NettyClient" />
+      <item itemvalue="Application.NettyServer" />
+      <item itemvalue="Application.NIOClient" />
+      <item itemvalue="Application.NIOServer" />
+      <item itemvalue="Spring Boot.LearnApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.NettyClient" />
+        <item itemvalue="Application.NettyServer" />
         <item itemvalue="Application.NIOClient" />
         <item itemvalue="Application.NIOServer" />
       </list>
@@ -93,6 +138,7 @@
   </component>
   <component name="SvnConfiguration">
     <configuration useDefault="false">D:\opensource\svn\bin</configuration>
+    <supportedVersion>125</supportedVersion>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -102,10 +148,46 @@
       <option name="presentableId" value="Default" />
       <updated>1584079670568</updated>
       <workItem from="1584079672986" duration="7352000" />
+      <workItem from="1584089394587" duration="4448000" />
+      <workItem from="1584153238680" duration="1153000" />
+      <workItem from="1584154400794" duration="5556000" />
     </task>
+    <task id="LOCAL-00001" summary="netty实现的简单聊天功能">
+      <created>1584165663172</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584165663172</updated>
+    </task>
+    <task id="LOCAL-00002" summary="调整代码">
+      <created>1584165786685</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1584165786685</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="netty实现的简单聊天功能" />
+    <MESSAGE value="调整代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整代码" />
   </component>
 </project>
