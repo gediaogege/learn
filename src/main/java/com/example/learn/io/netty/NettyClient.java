@@ -35,12 +35,13 @@ public class NettyClient {
                     .channel(NioSocketChannel.class)
                     .handler(ch);
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 8088).sync();
-            System.out.println("======="+channelFuture.channel().remoteAddress()+"======");
+            System.out.println("=======" + channelFuture.channel().remoteAddress() + "======");
+
             Scanner sc = new Scanner(System.in);
-            while (sc.hasNext()){
+            while (sc.hasNext()) {
                 channelFuture.channel().writeAndFlush(sc.next());
             }
-            //channelFuture.channel().closeFuture().sync();
+            channelFuture.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully();
         }

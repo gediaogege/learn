@@ -11,6 +11,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author qinmintao
@@ -38,6 +41,7 @@ public class NettyServer {
                             ChannelPipeline pipeline = socketChannel.pipeline();
                             pipeline.addLast("decoder", new StringDecoder());
                             pipeline.addLast("encoder", new StringEncoder());
+                            pipeline.addLast(new IdleStateHandler(3,0,0, TimeUnit.SECONDS));
                             pipeline.addLast(new NettyServerHandel());
                         }
                     });

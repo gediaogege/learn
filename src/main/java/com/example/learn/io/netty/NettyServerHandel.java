@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ public class NettyServerHandel implements ChannelInboundHandler {
     //保存连接到服务端的channel集合
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private int readIdleTimes = 0;
 
     @Override
     public void channelRegistered(ChannelHandlerContext channelHandlerContext) throws Exception {
@@ -44,7 +46,7 @@ public class NettyServerHandel implements ChannelInboundHandler {
         //断开连接触发
         System.out.println(channelHandlerContext.channel().remoteAddress() + "下线了");
         channelGroup.remove(channelHandlerContext.channel());
-        channelGroup.writeAndFlush("[客户端：]"+channelHandlerContext.channel().remoteAddress()+"下线了");
+        channelGroup.writeAndFlush("[客户端：]" + channelHandlerContext.channel().remoteAddress() + "下线了");
         System.out.println("当前在线人数" + channelGroup.size());
     }
 
@@ -52,14 +54,18 @@ public class NettyServerHandel implements ChannelInboundHandler {
     public void channelRead(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
         //服务端收到客户端发过来的消息触发
         Channel channel = channelHandlerContext.channel();
-        channelGroup.forEach(ch -> {
-            if (ch != channel) {
-                ch.writeAndFlush("[客户端：]" + ch.remoteAddress() + "发送了消息：" + (String) o);
-            } else {
-                ch.writeAndFlush("自己发送了消息: " + (String) o);
-            }
-        });
-        System.out.println(channel.remoteAddress()+":"+o);
+        if ("I am alive".equals(o)) {
+            channel.writeAndFlush("ok");
+        } else {
+            channelGroup.forEach(ch -> {
+                if (ch != channel) {
+                    ch.writeAndFlush("[客户端：]" + ch.remoteAddress() + "发送了消息：" + (String) o);
+                } else {
+                    ch.writeAndFlush("自己发送了消息: " + (String) o);
+                }
+            });
+            System.out.println(channel.remoteAddress() + ":" + o);
+        }
     }
 
     @Override
@@ -69,7 +75,29 @@ public class NettyServerHandel implements ChannelInboundHandler {
 
     @Override
     public void userEventTriggered(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
+        IdleStateEvent event = (IdleStateEvent) o;
 
+        String eventType = null;
+        switch (event.state()) {
+            case READER_IDLE:
+                eventType = "读空闲";
+                readIdleTimes++; // 读空闲的计数加1
+                break;
+            case WRITER_IDLE:
+                eventType = "写空闲";
+                // 不处理
+                break;
+            case ALL_IDLE:
+                eventType = "读写空闲";
+                // 不处理
+                break;
+        }
+        System.out.println(channelHandlerContext.channel().remoteAddress() + "超时事件：" + eventType);
+        if (readIdleTimes > 3) {
+            System.out.println(" [server]读空闲超过3次，关闭连接");
+            channelHandlerContext.channel().writeAndFlush("you are out");
+            channelHandlerContext.channel().close();
+        }
     }
 
     @Override
