@@ -34,7 +34,7 @@ public class NIOClient {
                         ByteBuffer buffer = ByteBuffer.allocate(1024);
                         while (clientChannel.read(buffer) > 0) {
                             buffer.flip();
-                            System.out.println("接收到服务端的消息: " + new String(buffer.array(),"utf-8"));
+                            System.out.println("接收到服务端的消息: " + new String(buffer.array()));
                             buffer.clear();
                         }
                     }
