@@ -19,7 +19,9 @@ import io.netty.handler.codec.string.StringEncoder;
  */
 public class NettyServer {
     public static void main(String[] args) throws Exception {
+        //主要是监听客户端连接服务端的是事件，这个线程也是绑定一个selector
         NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        //主要是监听客户端和服务端的i/o事件，多个线程维护多个selector;一主多从的模型
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -34,8 +36,8 @@ public class NettyServer {
                             //如果是客户端发送一条时间给服务端，这时对于客户端是出栈操作，pipeline的执行顺序是从tail到head
                             //而且只执行outBandHandel.就是NettyServerHandel-->encoder(发送-->编码);
                             ChannelPipeline pipeline = socketChannel.pipeline();
-                            pipeline.addLast("decoder",new StringDecoder());
-                            pipeline.addLast("encoder",new StringEncoder());
+                            pipeline.addLast("decoder", new StringDecoder());
+                            pipeline.addLast("encoder", new StringEncoder());
                             pipeline.addLast(new NettyServerHandel());
                         }
                     });
